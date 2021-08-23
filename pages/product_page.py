@@ -21,6 +21,11 @@ class ProductPage(BasePage):
         assert name_of_book == self.browser.find_element(*ProductPageLocators.basket_name).text, 'Название книги неверно'
         assert book_price == self.browser.find_element(*ProductPageLocators.basket_price).text, 'Цена книги неверна'
 
+    def should_not_be_success_message(self):
+        assert self.is_not_element_present(*ProductPageLocators.basket_name), \
+            "Сообщение об успехе присутствует, но его не должно быть"
 
-
+    def check_success_message_is_disappeared(self):
+        assert self.is_disappeared(*ProductPageLocators.basket_name), \
+            "Сообщение об успехе не удаляется"
 

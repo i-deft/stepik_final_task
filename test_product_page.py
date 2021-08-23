@@ -20,6 +20,36 @@ def test_guest_can_add_product_to_basket(browser, link):
     page.should_be_product_url()
     page.add_to_basket()
     page.solve_quiz_and_get_code()
-    # sleep(1000)
     page.check_name_and_price_of_item()
 
+def test_guest_can_success_message_is_not_present(browser):
+    link = 'http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer0'
+    page = ProductPage(browser, link)
+    page.open()
+    page.should_not_be_success_message()
+
+
+@pytest.mark.xfail(reason="тест падает, потому что пользователь видит сообщение после добавления в корзину")
+def test_guest_cant_see_success_message_after_adding_product_to_basket(browser):
+    link = "http://selenium1py.pythonanywhere.com/ru/catalogue/coders-at-work_207/"
+    page = ProductPage(browser, link)
+    page.open()
+    page.add_to_basket()
+    page.solve_quiz_and_get_code()
+    page.should_not_be_success_message()
+
+
+def test_guest_cant_see_success_message(browser):
+    link = "http://selenium1py.pythonanywhere.com/ru/catalogue/coders-at-work_207/"
+    page = ProductPage(browser, link)
+    page.open()
+    page.should_not_be_success_message()
+
+
+@pytest.mark.xfail(reason="тест падает, потому что сообщение об успехе не исчезает")
+def test_message_disappeared_after_adding_product_to_basket(browser):
+    link = "http://selenium1py.pythonanywhere.com/ru/catalogue/coders-at-work_207/"
+    page = ProductPage(browser, link)
+    page.open()
+    page.add_to_basket()
+    page.check_success_message_is_disappeared()
