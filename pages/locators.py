@@ -18,3 +18,7 @@ class ProductPageLocators():
     basket_price = (By.CSS_SELECTOR, '.fade.in:nth-child(3) > .alertinner strong')
     basket_link = (By.CSS_SELECTOR, 'span[class="btn-group"]')
 
+
+class BasePageLocators():
+    LOGIN_LINK = (By.CSS_SELECTOR, "#login_link")
+    LOGIN_LINK_INVALID = (By.CSS_SELECTOR, "#login_link_inc")
